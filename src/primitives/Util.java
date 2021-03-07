@@ -42,7 +42,7 @@ public abstract class Util {
      * @param number
      * @return 0.0 if the number is very close to zero, the number itself otherwise
      */
-    public static double alignZero(double number) {
+    public static double alignZero(Coordinate number) {
         return getExp(number) < ACCURACY ? 0.0 : number;
     }
 

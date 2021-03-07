@@ -21,9 +21,13 @@ public final class Coordinate {
      *
      * @param coord coordinate value
      */
-    public Coordinate(double coord) {
+    public Coordinate(Coordinate coord) {
         // if it too close to zero make it zero
         this.coord = alignZero(coord);
+    }
+
+    public Coordinate(double x) {
+        this.coord=x;
     }
 
     /*************** Admin *****************/
