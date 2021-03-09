@@ -4,11 +4,12 @@ import primitives.Point3D;
 import primitives.Util;
 import primitives.Vector;
 
-public abstract class Sphere extends RadialGeometry {
+public abstract class Sphere {
     Point3D _center;
+    double _radius;
+
 
     public Sphere(double _radius,Point3D _center) {
-        super(_radius);
     }
 
     @Override
@@ -24,7 +25,6 @@ public abstract class Sphere extends RadialGeometry {
         return _center;
     }
 
-    @Override
     public Vector getNormal(Point3D p) {
         return null;
     }

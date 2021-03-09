@@ -44,18 +44,18 @@ public class Vector {
         _head = head;
     }
     public void add(Vector vector) {
-        this._head.add(vector);
+        _head.add(vector);
     }
     public void subtract(Vector vector) {
-        this._head.subtract(vector._head);
+        _head.subtract(vector._head);
     }
 
-    public Vector scale(double scalingFacor) {
+    public Vector scale(double num) {
         return new Vector(
                 new Point3D(
-                        new Coordinate(scalingFacor * _head._x.coord),
-                        new Coordinate(scalingFacor * _head._y.coord),
-                        new Coordinate(scalingFacor * _head._z.coord)));
+                        new Coordinate(num* _head._x.coord),
+                        new Coordinate(num * _head._y.coord),
+                        new Coordinate(num * _head._z.coord)));
     }
 
     public double dotProduct(Vector v) {
@@ -72,9 +72,9 @@ public class Vector {
     }
 
     public double lengthSquared() {
-        double xx = this._head._x.coord * this._head._x.coord;
-        double yy = this._head._y.coord * this._head._y.coord;
-        double zz = this._head._z.coord * this._head._z.coord;
+        double xx = _head._x.coord * _head._x.coord;
+        double yy = _head._y.coord * _head._y.coord;
+        double zz = _head._z.coord * _head._z.coord;
 
         return xx + yy + zz;
 
@@ -88,9 +88,9 @@ public class Vector {
      */
     public Vector normalize() {
 
-        double x = this._head._x.coord;
-        double y = this._head._y.coord;
-        double z = this._head._z.coord;
+        double x = _head._x.coord;
+        double y = _head._y.coord;
+        double z = _head._z.coord;
 
         double length = this.length();
 

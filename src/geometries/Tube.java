@@ -4,7 +4,7 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
-public abstract class Tube  extends RadialGeometry{
+public abstract class Tube{
     public Ray RT;
     public Tube(Ray MRT){
         super();
