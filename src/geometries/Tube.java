@@ -9,7 +9,7 @@ public abstract class Tube  extends RadialGeometry{
     public Tube(Ray MRT){
         super();
 
-        this.RT= MRT;
+        RT= MRT;
 
     }
 

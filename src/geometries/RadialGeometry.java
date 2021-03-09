@@ -12,12 +12,12 @@ public abstract class RadialGeometry implements Geometry {
      * @param _radius
      */
     public RadialGeometry(double _radius) {
-        this._radius = _radius;
+        _radius = _radius;
     }
 
     public RadialGeometry() {
         RadialGeometry other = null;
-        this._radius = other._radius;
+        _radius = other._radius;
     }
 
     public double get_radius() {

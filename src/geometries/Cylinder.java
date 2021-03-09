@@ -9,7 +9,7 @@ public abstract class Cylinder extends Tube {
 
     public Cylinder(Ray MRT ,double _height ) {
         super(MRT);
-        this._heightL=_height;
+        _heightL=_height;
     }
 
     public double get_heightL() {

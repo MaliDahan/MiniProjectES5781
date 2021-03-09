@@ -21,8 +21,8 @@ public class Plane implements Geometry {
     }
 
     public Plane(Point3D _p, Vector _normal) {
-        this._p = new Point3D(_p);
-        this._normal = new Vector(_normal);
+        _p = new Point3D(_p);
+        _normal = new Vector(_normal);
     }
 
     @Override

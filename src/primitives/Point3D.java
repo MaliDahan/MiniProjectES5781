@@ -29,11 +29,10 @@ public class Point3D {
         _z = new Coordinate(z);
     }
 
-    public Point3D(Point3D point) {
-         //public Point3D(Point3D p) {
-            _x = new Coordinate(point._x.coord);
-            _y = new Coordinate(point._y.coord);
-            _z = new Coordinate(point._z.coord);
+    public Point3D(Point3D p) {
+            _x = new Coordinate(p._x.coord);
+            _y = new Coordinate(p._y.coord);
+            _z = new Coordinate(p._z.coord);
         }
 
 

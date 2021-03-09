@@ -9,7 +9,6 @@ public abstract class Sphere extends RadialGeometry {
 
     public Sphere(double _radius,Point3D _center) {
         super(_radius);
-        this._center= new Point3D(_center);
     }
 
     @Override

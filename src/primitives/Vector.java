@@ -59,14 +59,14 @@ public class Vector {
     }
 
     public double dotProduct(Vector v) {
-        return (this._head._x.coord * v._head._x.coord +
-                this._head._y.coord * v._head._y.coord +
-                this._head._z.coord * v._head._z.coord);
+        return (_head._x.coord * v._head._x.coord +
+                _head._y.coord * v._head._y.coord +
+                _head._z.coord * v._head._z.coord);
     }
     public Vector crossProduct(Vector v) {
-        double w1 = this._head._y.coord * v._head._z.coord - this._head._z.coord * v._head._y.coord;
-        double w2 = this._head._z.coord * v._head._x.coord - this._head._x.coord * v._head._z.coord;
-        double w3 = this._head._x.coord * v._head._y.coord - this._head._y.coord * v._head._x.coord;
+        double w1 = _head._y.coord * v._head._z.coord - _head._z.coord * v._head._y.coord;
+        double w2 = _head._z.coord * v._head._x.coord - _head._x.coord * v._head._z.coord;
+        double w3 = _head._x.coord * v._head._y.coord - _head._y.coord * v._head._x.coord;
 
         return new Vector(new Point3D(w1, w2, w3));
     }
@@ -97,9 +97,9 @@ public class Vector {
         if (length == 0)
             throw new ArithmeticException("divide by Zero");
 
-        this._head._x = new Coordinate(x / length);
-        this._head._y = new Coordinate(y / length);
-        this._head._z = new Coordinate(z / length);
+        _head._x = new Coordinate(x / length);
+        _head._y = new Coordinate(y / length);
+        _head._z = new Coordinate(z / length);
 
         return this;
     }

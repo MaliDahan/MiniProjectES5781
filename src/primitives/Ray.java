@@ -2,7 +2,7 @@ package primitives;
 
 public class Ray {
     /**
-     * The point from which the ray starts.
+     * The point where the ray starts.
      */
     private final Point3D _point;
     /**
@@ -11,9 +11,9 @@ public class Ray {
     private final Vector _direction;
 
     /**
-     * Constructor for creating a new instance of this class
+     * Constructor for a new instance in this class
      * @param point the start of the ray.
-     * @param direction the direction of the ray.
+     * @param direction of the ray.
      */
     public Ray(Point3D point, Vector direction) {
         _point = new Point3D(point);
@@ -38,10 +38,10 @@ public class Ray {
         return new Point3D(_point);
     }
     /**
-     * Getter for the direction of the ray that is
+     * Getter for the direction of the ray
      * represented by this object.
      * @return A new Vector that represents the
-     * direction of the ray that is
+     * direction of the ray
      * represented by this object.
      */
     public Vector getDirection() {
