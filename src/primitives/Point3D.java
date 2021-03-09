@@ -31,9 +31,9 @@ public class Point3D {
 
     public Point3D(Point3D point) {
          //public Point3D(Point3D p) {
-            this._x = new Coordinate(point._x);
-            this._y = new Coordinate(point._y);
-            this._z = new Coordinate(point._z);
+            _x = new Coordinate(point._x.coord);
+            _y = new Coordinate(point._y.coord);
+            _z = new Coordinate(point._z.coord);
         }
 
 
