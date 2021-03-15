@@ -28,9 +28,10 @@ public class Vector {
     }
 
     public Vector(double x, double y, double z) {
-        _head._x= new Coordinate(x);
-        _head._y=new Coordinate(y);
-        _head._z=new Coordinate(z);
+        Point3D point=new Point3D(x,y,z);
+       //_head._x= new Coordinate(x);
+       //_head._y=new Coordinate(y);
+       //_head._z=new Coordinate(z);
     }
 
     public Point3D getHead() {
@@ -43,38 +44,42 @@ public class Vector {
         }
         _head = head;
     }
-    public void add(Vector vector) {
-        this._head.add(vector);
-    }
-    public void subtract(Vector vector) {
-        this._head.subtract(vector._head);
+    public Vector(Coordinate x, Coordinate   y, Coordinate z) {
+        this(x._coord,y._coord, z._coord);
     }
 
-    public Vector scale(double scalingFacor) {
+    public void add(Vector vector) {
+        _head.add(vector);
+    }
+    public void subtract(Vector vector) {
+        _head.subtract(vector._head);
+    }
+
+    public Vector scale(double num) {
         return new Vector(
                 new Point3D(
-                        new Coordinate(scalingFacor * _head._x.coord),
-                        new Coordinate(scalingFacor * _head._y.coord),
-                        new Coordinate(scalingFacor * _head._z.coord)));
+                        new Coordinate(num* _head._x._coord),
+                        new Coordinate(num * _head._y._coord),
+                        new Coordinate(num * _head._z._coord)));
     }
 
     public double dotProduct(Vector v) {
-        return (this._head._x.coord * v._head._x.coord +
-                this._head._y.coord * v._head._y.coord +
-                this._head._z.coord * v._head._z.coord);
+        return (_head._x._coord * v._head._x._coord +
+                _head._y._coord * v._head._y._coord +
+                _head._z._coord * v._head._z._coord);
     }
     public Vector crossProduct(Vector v) {
-        double w1 = this._head._y.coord * v._head._z.coord - this._head._z.coord * v._head._y.coord;
-        double w2 = this._head._z.coord * v._head._x.coord - this._head._x.coord * v._head._z.coord;
-        double w3 = this._head._x.coord * v._head._y.coord - this._head._y.coord * v._head._x.coord;
+        double w1 = _head._y._coord * v._head._z._coord - _head._z._coord * v._head._y._coord;
+        double w2 = _head._z._coord * v._head._x._coord - _head._x._coord * v._head._z._coord;
+        double w3 = _head._x._coord * v._head._y._coord - _head._y._coord * v._head._x._coord;
 
         return new Vector(new Point3D(w1, w2, w3));
     }
 
     public double lengthSquared() {
-        double xx = this._head._x.coord * this._head._x.coord;
-        double yy = this._head._y.coord * this._head._y.coord;
-        double zz = this._head._z.coord * this._head._z.coord;
+        double xx = _head._x._coord * _head._x._coord;
+        double yy = _head._y._coord * _head._y._coord;
+        double zz = _head._z._coord * _head._z._coord;
 
         return xx + yy + zz;
 
@@ -88,18 +93,16 @@ public class Vector {
      */
     public Vector normalize() {
 
-        double x = this._head._x.coord;
-        double y = this._head._y.coord;
-        double z = this._head._z.coord;
+        double x = _head._x._coord;
+        double y = _head._y._coord;
+        double z = _head._z._coord;
 
         double length = this.length();
 
         if (length == 0)
             throw new ArithmeticException("divide by Zero");
 
-        this._head._x = new Coordinate(x / length);
-        this._head._y = new Coordinate(y / length);
-        this._head._z = new Coordinate(z / length);
+        this._head = new Point3D(x / length, y / length, z / length);
 
         return this;
     }

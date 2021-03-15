@@ -18,4 +18,15 @@ class Point3DTest {
     @Test
     void distanceSquared() {
     }
+
+    @Test
+    void testToString(){
+        System.out.println("the first point is: "+p1);
+        System.out.println("the second point is: "+p2);
+    }
+
+    @Test
+    void distance(){
+        assertEquals(20,p1.distance(p2));
+    }
 }
