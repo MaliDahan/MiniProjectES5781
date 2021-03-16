@@ -3,12 +3,14 @@ package primitives;
 import java.util.Objects;
 
 /**
- * Basic geometric object for 3D Point
+ * Basic geometric object (point) for Ray tracing in 3D
+ * @outhor Mali
+ * @author Routy
  */
 public class Point3D {
-    Coordinate _x;
-    Coordinate _y;
-    Coordinate _z;
+    final Coordinate _x;
+    final Coordinate _y;
+    final Coordinate _z;
 
     public final static Point3D PointZERO=new Point3D(0,0,0);
 
@@ -20,7 +22,7 @@ public class Point3D {
      */
 
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
-        this(x.coord, y.coord, z.coord);
+        this(x.coord,y.coord, z.coord);
     }
 
     public Point3D(double x, double y, double z) {
@@ -30,10 +32,10 @@ public class Point3D {
     }
 
     public Point3D(Point3D p) {
-            _x = new Coordinate(p._x.coord);
-            _y = new Coordinate(p._y.coord);
-            _z = new Coordinate(p._z.coord);
-        }
+        _x = new Coordinate(p._x.coord);
+        _y = new Coordinate(p._y.coord);
+        _z = new Coordinate(p._z.coord);
+    }
 
 
     @Override
@@ -45,24 +47,26 @@ public class Point3D {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(_x.coord, _y.coord, _z.coord);
+    public String toString(){
+        return "(" + _x + "," + _y + "," + _z + ")";
     }
 
     /**
      *
-     * @param point3D
+     * @param
      * @return
      */
 
-    public double distanceSquared(Point3D point3D){
-        double x1=_x.coord;
-        double y1=_y.coord;
-        double z1=_z.coord;
-        double x2= point3D._x.coord;
-        double y2= point3D._y.coord;
-        double z2= point3D._z.coord;
-        return ((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)+(z2-z1)*(z2-z1));
+    public double distanceSquared(Point3D other){
+        final double x1=_x.coord;
+        final double y1=_y.coord;
+        final double z1=_z.coord;
+
+        final double x2= other._x.coord;
+        final double y2= other._y.coord;
+        final double z2= other._z.coord;
+
+        return (((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))+((z2-z1)*(z2-z1)));
     }
 
     /**
@@ -87,3 +91,8 @@ public class Point3D {
                 _z.coord-p._z.coord);
     }
 }
+
+
+
+
+

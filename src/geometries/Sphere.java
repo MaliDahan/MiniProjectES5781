@@ -9,7 +9,9 @@ public abstract class Sphere {
     double _radius;
 
 
-    public Sphere(double _radius,Point3D _center) {
+    public Sphere(double radius,Point3D center) {
+        center=_center;
+        radius=_radius;
     }
 
     @Override
@@ -22,11 +24,13 @@ public abstract class Sphere {
     }
 
     public Point3D get_center() {
+
         return _center;
     }
 
     public Vector getNormal(Point3D p) {
-        return null;
+        Vector normal = p.subtract(_center);
+        return normal.normalize();
     }
 
 
