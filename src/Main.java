@@ -1,8 +1,3 @@
-/**
- * Presented by Mali Michaeli 205518129 malimichaeli94@gmail.com
- * Routy Benhamou 1419198 routy26@gmail.com
- */
-
 import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;
@@ -10,7 +5,7 @@ import static primitives.Util.*;
 /**
  * Test program for the 1st stage
  *
- * @author Dan Zilberstein
+ * @author Mali
  */
 public final class Main {
 
