@@ -3,11 +3,11 @@ package geometries;
 import primitives.*;
 
 public class Plane implements Geometry {
-    Point3D _p;
-    Vector _normal;
+    final Point3D _q0;
+    final Vector _normal;
 
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
-        _p = new Point3D(p1);
+        _q0 = p1;
 
         Vector U = p2.subtract(p1);
         Vector V = p3.subtract(p1);
@@ -16,13 +16,14 @@ public class Plane implements Geometry {
 
         N.normalize();
 
-        _normal = N.scale(-1);
+//        _normal = N.scale(-1);
+        _normal = N;
 
     }
 
-    public Plane(Point3D _p, Vector _normal) {
-        _p = new Point3D(_p);
-        _normal = new Vector(_normal);
+    public Plane(Point3D p, Vector n) {
+        _q0 = p;
+        _normal = n.normalize();
     }
 
     @Override
@@ -30,9 +31,10 @@ public class Plane implements Geometry {
         return _normal;
     }
 
-    //because polygon
+    /**
+     * for polygon
+     */
     public Vector getNormal() {
         return getNormal(null);
     }
-
 }

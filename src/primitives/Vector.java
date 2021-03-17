@@ -19,16 +19,19 @@ public class Vector {
     }
 
     public Vector(Point3D p1, Point3D p2) {
-       Point3D newPoint  = new Point3D(
-               p2._x._coord-p1._x._coord,
-               p2._y._coord-p1._y._coord,
-               p2._z._coord-p1._z._coord
-               );
-       if(newPoint.equals(PointZERO)){
-           throw new IllegalArgumentException("p1 == p2");
-       }
-       _head = newPoint;
+        Point3D newPoint  = new Point3D(
+                p2._x._coord-p1._x._coord,
+                p2._y._coord-p1._y._coord,
+                p2._z._coord-p1._z._coord
+        );
+        if(newPoint.equals(PointZERO)){
+            throw new IllegalArgumentException("p1 == p2");
+        }
+        _head = newPoint;
     }
+
+    public Vector(Vector v) {
+        _head= v._head;}
 
     @Override
     public boolean equals(Object o) {
@@ -38,23 +41,24 @@ public class Vector {
         return Objects.equals(_head, vector._head);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(_head);
-    }
-
     public Point3D getHead() {
         return new Point3D(_head._x,_head._y,_head._z);
     }
 
-    public void add(Vector vector) {
+    public Vector add(Vector other){
+        return new Vector(new Point3D(
+                this._head._x._coord+other._head._x._coord,
+                this._head._y._coord+other._head._y._coord,
+                this._head._z._coord+other._head._z._coord));
 
-        _head.add(vector);
     }
 
-    public void subtract(Vector vector) {
+    public Vector subtract(Vector vector) {
 
-        _head.subtract(vector._head);
+        return new Vector(new Point3D(
+                this._head._x._coord-vector._head._x._coord,
+                this._head._y._coord-vector._head._y._coord,
+                this._head._z._coord-vector._head._z._coord));
     }
 
     public Vector scale(double num) {

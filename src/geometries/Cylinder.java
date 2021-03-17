@@ -4,11 +4,14 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
-public abstract class Cylinder extends Tube {
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
+public class Cylinder extends Tube {
     double _heightL;
 
-    public Cylinder(Ray MRT ,double _height ) {
-        super(MRT);
+    public Cylinder(Ray _axisRay ,double _height, double _radius) {
+        super(_axisRay, _radius);
         _heightL=_height;
     }
 
@@ -19,10 +22,29 @@ public abstract class Cylinder extends Tube {
     @Override
     public String toString() {
         return "Cylinder{" +
-                "RT=" + RT +
+                "ray=" + _ray +
                 '}';
     }
     public Vector getNormal(Point3D p) {
-        return null;
+
+        Point3D o = _ray.getPoint();
+        Vector v = _ray.getDirection();
+        /**
+         * projection of P-O on the ray
+         */
+        double t;
+        try {
+            t = alignZero(p.subtract(o).dotProduct(v));
+        }
+        catch (IllegalArgumentException e) {
+            return v;
+        }
+
+        if (t == 0 || isZero(_heightL - t))
+            return v;
+
+        o = o.add(v.scale(t));
+        return p.subtract(o).normalize();
     }
+
 }

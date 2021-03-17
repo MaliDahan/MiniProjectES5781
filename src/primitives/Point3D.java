@@ -1,11 +1,9 @@
 package primitives;
 
-import java.util.Objects;
-
 /**
  * Basic geometric object (point) for Ray tracing in 3D
  * @outhor Mali
- * @author routhy
+ * @author Routy
  */
 public class Point3D {
     final Coordinate _x;
@@ -51,11 +49,6 @@ public class Point3D {
         return "(" + _x + "," + _y + "," + _z + ")";
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(_x._coord, _y._coord, _z._coord);
-    }
-
     /**
      *
      * @param
@@ -85,14 +78,14 @@ public class Point3D {
 
     public Point3D add(Vector vector){
         return new Point3D(
-                _x._coord+vector._head._x._coord,
-                _y._coord+vector._head._y._coord,
-                _z._coord+vector._head._z._coord);
+                _x._coord +vector._head._x._coord,
+                _y._coord +vector._head._y._coord,
+                _z._coord +vector._head._z._coord);
     }
 
     public Vector subtract(Point3D p){
-        return new Vector(_x._coord-p._x._coord,
-                _y._coord-p._y._coord,
-                _z._coord-p._z._coord);
+        return new Vector(_x._coord -p._x._coord,
+                _y._coord -p._y._coord,
+                _z._coord -p._z._coord);
     }
 }
