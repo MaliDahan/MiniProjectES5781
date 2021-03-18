@@ -4,7 +4,7 @@ import primitives.Point3D;
 import primitives.Util;
 import primitives.Vector;
 
-public abstract class Sphere {
+public class Sphere {
     Point3D _center;
     double _radius;
 
