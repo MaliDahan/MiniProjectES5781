@@ -4,7 +4,13 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 import static primitives.Util.isZero;
+/**
+ * Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
+ * system
+ **/
 
 public class Tube implements Geometry {
     protected final Ray _ray;
@@ -52,5 +58,11 @@ public class Tube implements Geometry {
          */
         Vector check = pt.subtract(pt);
         return check.normalize();
+    }
+
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return null;
     }
 }

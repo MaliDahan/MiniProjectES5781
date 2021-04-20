@@ -85,4 +85,11 @@ public class Polygon implements Geometry {
     public Vector getNormal(Point3D point) {
         return plane.getNormal();
     }
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        List<Point3D> result = null;
+        return result;
+    }
+
 }

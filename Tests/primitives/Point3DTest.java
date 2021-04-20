@@ -5,28 +5,53 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.co
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Point3DTest {
-    Point3D p1= new Point3D(1.0d,2.0d,3.0d);
-    Point3D p2=new Point3D(1.000000000000001,2,3);
+class Point3DTest extends Object{
+
     @Test
-    void testEquals() {
-        //boolean equality=p1.equals(p2);
-        //assertTrue(equality);
-        assertEquals(p1,p2);
+    void testSubtract() {
+        Point3D p= new Point3D(2.0, 2.0, 3.0);
+        Point3D p1 = new Point3D(2.0, 2.0, 3.0);
+        Vector v = p.subtract(p1);
+
+        assertEquals(new Vector(0.0, 0.0, 0.0), v);
+
     }
 
     @Test
-    void distanceSquared() {
+    void testAdd() {
+        Point3D p = new Point3D(2.0, 2.0, 2.0);
+        Vector v = new Vector(2.0, 2.0, 0.0);
+        Point3D p1 = p.add(v);
+
+        assertEquals(new Point3D(4.0, 4.0, 2.0), p1);
+    }
+
+    @Test
+    void testDistanceSquared() {
+        Point3D p = new Point3D(1.0, 2.0, 3.0);
+        Point3D p1 = new Point3D(-3.0, -1.0, 3.0);
+        double x1 = p.distanceSquared(p1);
+        /**
+         * Equivalence partitions tests
+         */
+        assertEquals(25.00, x1);
+
     }
 
     @Test
     void testToString(){
-        System.out.println("the first point is: "+p1);
-        System.out.println("the second point is: "+p2);
+        Point3D p = new Point3D(1.0, 2.0, 3.0);
+        Point3D p1 = new Point3D(-3.0, -1.0, 3.0);
+        System.out.println("the first point is: "+p);
+        System.out.println("the second point is: "+p1);
     }
 
     @Test
     void distance(){
-        assertEquals(20,p1.distance(p2));
+        Point3D p = new Point3D(1.0, 2.0, 3.0);
+        Point3D p1 = new Point3D(-3.0, -1.0, 3.0);
+        double x1 = p.distance(p1);
+        assertEquals(5.00, x1);
+
     }
 }
