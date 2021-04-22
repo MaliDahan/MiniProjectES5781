@@ -4,6 +4,9 @@ import primitives.*;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 public class Plane implements Geometry {
     final Point3D _q0;
     final Vector _normal;
@@ -52,6 +55,26 @@ public class Plane implements Geometry {
             return null;
         }
 
-        return null;
+        Vector P0_q0 = _q0.subtract(P0);
+
+        //calcul of denominator
+        double denominator = alignZero( _normal.dotProduct(P0_q0));
+
+        if(isZero(denominator)){
+            return null;
+        }
+         //calcul of numerator
+        double numerator = alignZero(n.dotProduct(v));
+
+        //ray is living in the plane axis
+        if(isZero(numerator)){
+            return null;
+        }
+
+        double t = alignZero((denominator/ numerator));
+
+        Point3D P = P0.add(v.scale(t));
+
+        return List.of(P);
     }
 }

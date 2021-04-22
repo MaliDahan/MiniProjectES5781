@@ -1,7 +1,10 @@
 package geometries;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import primitives.*;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
@@ -97,4 +100,54 @@ public class PolygonTest {
         assertEquals(new Vector(sqrt3, sqrt3, sqrt3), pl.getNormal(new Point3D(0, 0, 1)), "Bad normal to trinagle");
     }
 
+    @Test
+    void findIntersections() {
+        Polygon Polygon = new Polygon(new Point3D(0,0,0),
+                new Point3D(0,4,0),
+                new Point3D(4,4,0) ,  new Point3D(4,0,0));
+        //===========================================================//
+        //===================EP: Three cases:=======================//
+        // TC01: Inside Polygon (1 point)
+        Ray TC01 = new Ray(new Point3D(1.0,1.0,-1.0), new Vector(0.0,0.0,1.0));
+        List<Point3D> resultTC01 = Polygon.findIntersections(TC01);
+
+        assertEquals( 1, resultTC01.size(),"Wrong number of points");
+
+        assertEquals(List.of(new Point3D(1,1,0)), resultTC01, "Ray crosses Polygon");
+        // TC021:  Outside against edge (0 point)
+        Ray TC021 = new Ray(new Point3D(5.0,2.0,-1.0), new Vector(0.0,0.0,1.0));
+        List<Point3D> resultTC021 = Polygon.findIntersections(TC021);
+
+        assertEquals( 0, resultTC021.size(),"Wrong number of points");
+
+        // TC022: Outside against vertex (0 points)
+        Ray TC022 = new Ray(new Point3D(5.0,-1.0,-1.0), new Vector(0.0,0.0,1.0));
+        List<Point3D> resultTC022 = Polygon.findIntersections(TC022);
+
+        assertEquals( 0, resultTC022.size(),"Wrong number of points");
+
+        //===========================================================//
+        //===BVA: Three cases (the ray begins "before" the plane)===//
+
+        // TC11:  On edge (0 points)
+        Ray TC11 = new Ray(new Point3D(2.0,4.0,-1.0), new Vector(0.0,0.0,1.0));
+        List<Point3D> resultTC11 = Polygon.findIntersections(TC11);
+
+        assertEquals( 0, resultTC11.size(),"Wrong number of points");
+
+        // TC12: In vertex (0 points)
+        Ray TC12 = new Ray(new Point3D(0.0,0.0,-1.0), new Vector(0.0,0.0,1.0));
+        List<Point3D> resultTC12 = Polygon.findIntersections(TC12);
+
+        assertEquals( 0, resultTC12.size(),"Wrong number of points");
+
+        // TC13: On edge's continuation (0 points)
+        Ray TC13 = new Ray(new Point3D(0.0,8.0,-1.0), new Vector(0.0,0.0,1.0));
+        List<Point3D> resultTC13 = Polygon.findIntersections(TC13);
+
+        assertEquals( 0, resultTC13.size(),"Wrong number of points");
+
+
+    }
 }
+

@@ -88,8 +88,43 @@ public class Polygon implements Geometry {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> result = null;
-        return result;
+        List<primitives.Point3D> ListOfPoint = plane.findIntersections(ray);
+        if (ListOfPoint.size() == 0)
+            return null;
+        else {
+            Vector a;
+            Vector b;
+
+            //all bigger than 0
+            boolean Bigger = true;
+
+            //all smaller than 0
+            boolean Smaller = true;
+
+            for (int i = 0; i < vertices.size(); i++) {
+                //𝑣i = 𝑃i − 𝑃0
+                a = this.vertices.get(i).subtract(ray.getPoint());
+                // if
+                if (i == vertices.size() - 1)
+                   b = this.vertices.get(0).subtract(ray.getPoint());
+                else {
+                    b = this.vertices.get(i + 1).subtract(ray.getPoint());
+                }
+                //𝑁i = 𝑛𝑜𝑟𝑚𝑎𝑙𝑖𝑧𝑒 𝑣i × 𝑣k
+                Vector Ni = a.crossProduct(b).normalize();
+                if (alignZero(ray.getDirection().dotProduct(Ni)) == 0)
+                    return java.util.Collections.emptyList();
+                if (ray.getDirection().dotProduct(Ni) < 0)
+                    Bigger = false;
+                if (ray.getDirection().dotProduct(Ni) > 0)
+                    Smaller = false;
+            }
+
+            if (Bigger || Smaller)
+                return ListOfPoint ;
+
+            return null;
+        }
     }
 
 }

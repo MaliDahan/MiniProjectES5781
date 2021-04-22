@@ -2,25 +2,25 @@ package primitives;
 
 /**
  * Basic geometric object (point) for Ray tracing in 3D
- * @outhor Mali
+ *
  * @author Routy
+ * @outhor Mali
  */
 public class Point3D {
     final Coordinate _x;
     final Coordinate _y;
     final Coordinate _z;
 
-    public final static Point3D PointZERO=new Point3D(0,0,0);
+    public final static Point3D PointZERO = new Point3D(0, 0, 0);
 
     /**
-     *
      * @param x coordinate for x axis
      * @param y coordinate for y axis
      * @param z coordinate for z axis
      */
 
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
-        this(x._coord,y._coord, z._coord);
+        this(x._coord, y._coord, z._coord);
     }
 
     public Point3D(double x, double y, double z) {
@@ -45,26 +45,25 @@ public class Point3D {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "(" + _x + "," + _y + "," + _z + ")";
     }
 
     /**
-     *
      * @param
      * @return
      */
 
-    public double distanceSquared(Point3D other){
-        final double x1=_x._coord;
-        final double y1=_y._coord;
-        final double z1=_z._coord;
+    public double distanceSquared(Point3D other) {
+        final double x1 = _x._coord;
+        final double y1 = _y._coord;
+        final double z1 = _z._coord;
 
-        final double x2= other._x._coord;
-        final double y2= other._y._coord;
-        final double z2= other._z._coord;
+        final double x2 = other._x._coord;
+        final double y2 = other._y._coord;
+        final double z2 = other._z._coord;
 
-        return (((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1))+((z2-z1)*(z2-z1)));
+        return (((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)) + ((z2 - z1) * (z2 - z1)));
     }
 
     /**
@@ -72,20 +71,20 @@ public class Point3D {
      * @return
      */
 
-    public double distance(Point3D point3D){
+    public double distance(Point3D point3D) {
         return Math.sqrt(distanceSquared(point3D));
     }
 
-    public Point3D add(Vector vector){
+    public Point3D add(Vector vector) {
         return new Point3D(
-                _x._coord +vector._head._x._coord,
-                _y._coord +vector._head._y._coord,
-                _z._coord +vector._head._z._coord);
+                _x._coord + vector._head._x._coord,
+                _y._coord + vector._head._y._coord,
+                _z._coord + vector._head._z._coord);
     }
 
-    public Vector subtract(Point3D p){
-        return new Vector(_x._coord -p._x._coord,
-                _y._coord -p._y._coord,
-                _z._coord -p._z._coord);
+    public Vector subtract(Point3D p) {
+        return new Vector(_x._coord - p._x._coord,
+                _y._coord - p._y._coord,
+                _z._coord - p._z._coord);
     }
 }
