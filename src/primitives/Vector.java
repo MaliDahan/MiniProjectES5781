@@ -13,6 +13,13 @@ public class Vector {
         }
         _head = head;
     }
+    /**
+     * constructor for Vector class
+     *
+     * @param x value for X Coordinate of the head Point
+     * @param y value for Y Coordinate of the head Point
+     * @param z value for Z Coordinate of the head Point
+     */
 
     public Vector(double x, double y, double z) {
         this(new Point3D(x,y,z));
