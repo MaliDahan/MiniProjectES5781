@@ -1,4 +1,4 @@
-package unitTests.elementTests;
+package elements;
 
 import elements.Camera;
 import org.junit.jupiter.api.Test;

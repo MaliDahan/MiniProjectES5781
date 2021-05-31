@@ -1,5 +1,6 @@
 package primitives;
 
+
 import org.junit.jupiter.api.Test;
 
 import static java.lang.System.out;
@@ -12,10 +13,11 @@ import static primitives.Util.isZero;
  */
 
 
-public class VectorTest extends Object {
+public class VectorTest {
 
     Vector v1 = new Vector(1, 2, 3);
     Vector v2 = new Vector(-2, -4, -6);
+
     @Test
     void testZeroPoint(){
         try { // test zero vector

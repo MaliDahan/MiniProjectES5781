@@ -54,4 +54,6 @@ class Point3DTest extends Object{
         assertEquals(5.00, x1);
 
     }
+
+
 }
