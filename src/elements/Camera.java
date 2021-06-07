@@ -15,7 +15,7 @@ public class Camera {
     private double _height;
     private double _distance;
 
-    public Camera(Point3D p0, Vector vUP, Vector vTO) {
+    public Camera(Point3D p0, Vector vTO, Vector vUP) {
         _p0 = p0;
         _vUP = vUP.normalized();
         _vTO = vTO.normalized();

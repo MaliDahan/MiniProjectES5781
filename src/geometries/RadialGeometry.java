@@ -1,5 +1,7 @@
 package geometries;
 
+import primitives.Color;
+
 import static primitives.Util.isZero;
 
 /**
@@ -35,4 +37,6 @@ public abstract class RadialGeometry implements Geometry {
 
         return isZero(this._radius - that._radius);
     }
+
+    public abstract Object setEmission(Color color);
 }

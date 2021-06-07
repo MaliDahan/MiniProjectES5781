@@ -3,14 +3,25 @@ package geometries;
 import primitives.Point3D;
 import primitives.Ray;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * composite class for all geometries
  */
-public class Geometries implements Intersectable{
-    List<Intersectable> _intersectables;
+
+public class Geometries implements Intersectable {
+    private List<Intersectable> _intersectables = new LinkedList<>();
+
+    public Geometries(Intersectable... g) {
+        add(g);
+    }
+
+    public void add(Intersectable... g) {
+        Collections.addAll(_intersectables, g);
+    }
+
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
