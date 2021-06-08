@@ -1,16 +1,13 @@
 package geometries;
 
-import primitives.Point3D;
-import primitives.Ray;
-import primitives.Util;
-import primitives.Vector;
+import primitives.*;
 
 import java.util.List;
 
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
-public class Sphere extends RadialGeometry implements Geometry {
+public class Sphere extends RadialGeometry {
     final Point3D _center;
 
 
@@ -26,6 +23,11 @@ public class Sphere extends RadialGeometry implements Geometry {
         if (!(o instanceof Sphere)) return  false;
         Sphere other = (Sphere) o;
         return this._center.equals(other._center) && (Util.isZero(this._radius - other._radius));
+    }
+
+    @Override
+    public Object setEmission(Color color) {
+        return null;
     }
 
     public Point3D get_center() {
