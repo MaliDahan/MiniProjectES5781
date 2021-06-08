@@ -52,7 +52,7 @@ public class Polygon implements Geometry {
         if (vertices.length == 3)
             return; // no need for more tests for a Triangle
 
-        Vector n = plane.getNormal();
+        Vector n =plane.getNormal();
 
         // Subtracting any subsequent points will throw an IllegalArgumentException
         // because of Zero Vector if they are in the same point
@@ -88,43 +88,44 @@ public class Polygon implements Geometry {
 
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        List<primitives.Point3D> ListOfPoint = plane.findIntersections(ray);
-        if (ListOfPoint.size() == 0)
-            return null;
-        else {
-            Vector a;
-            Vector b;
+        List<Point3D> result = plane.findIntersections(ray);
 
-            //all bigger than 0
-            boolean Bigger = true;
+        if (result == null) {
+            return result;
+        }
 
-            //all smaller than 0
-            boolean Smaller = true;
+        Point3D P0 = ray.getPoint();
+        Vector v = ray.getDirection();
 
-            for (int i = 0; i < vertices.size(); i++) {
-                //𝑣i = 𝑃i − 𝑃0
-                a = this.vertices.get(i).subtract(ray.getPoint());
-                // if
-                if (i == vertices.size() - 1)
-                   b = this.vertices.get(0).subtract(ray.getPoint());
-                else {
-                    b = this.vertices.get(i + 1).subtract(ray.getPoint());
-                }
-                //𝑁i = 𝑛𝑜𝑟𝑚𝑎𝑙𝑖𝑧𝑒 𝑣i × 𝑣k
-                Vector Ni = a.crossProduct(b).normalize();
-                if (alignZero(ray.getDirection().dotProduct(Ni)) == 0)
-                    return java.util.Collections.emptyList();
-                if (ray.getDirection().dotProduct(Ni) < 0)
-                    Bigger = false;
-                if (ray.getDirection().dotProduct(Ni) > 0)
-                    Smaller = false;
-            }
+        Point3D P1 = vertices.get(1);
+        Point3D P2 = vertices.get(0);
 
-            if (Bigger || Smaller)
-                return ListOfPoint ;
+        Vector v1 = P1.subtract(P0);
+        Vector v2 = P2.subtract(P0);
 
+        double sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+
+        if (isZero(sign)) {
             return null;
         }
-    }
 
+        boolean positive = sign > 0;
+
+        //iterate through all vertices of the polygon
+        for (int i = vertices.size() - 1; i > 0; --i) {
+            v1 = v2;
+            v2 = vertices.get(i).subtract(P0);
+
+            sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+            if (isZero(sign)) {
+                return null;
+            }
+
+            if (positive != (sign > 0)) {
+                return null;
+            }
+        }
+
+        return result;
+    }
 }
