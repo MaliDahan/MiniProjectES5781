@@ -23,4 +23,3 @@ public class AmbientLight {
         return _intensity;
     }
 }
-
